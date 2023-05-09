@@ -1,6 +1,6 @@
 import { Component } from "react";
-// import { Header } from "./Header";
-// import LeaveFeedback from "./LeaveFeedback";
+import { Header } from "./Header";
+import FeedbackOptions from "./FeedbackOptions";
 
 
  export class App extends Component{
@@ -11,13 +11,24 @@ import { Component } from "react";
     bad: 0
   }
 
+countTotalFeedback(){
+  const {good, neutral, bad} = this.state;
+  return good + neutral + bad
+}
 
+countPositiveFeedbackPercentage({good} ){
+  Math.round((good*100)/this.countTotalFeedback(this.state))
+
+}
+
+handelLeaveFeedback = el => this.setState(prev => ++prev[el]);
 
   render(){
     return(
 <div>
-<h1>Please leave feedback</h1>
+<Header title="Please leave feedback" />
+<FeedbackOptions options={['good','neutral', 'bad']} onLeaveFeedback={this.handelLeaveFeedback}/>
 </div>
-    )
+)
   }
 }
