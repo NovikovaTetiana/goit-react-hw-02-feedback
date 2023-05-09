@@ -9,3 +9,4 @@ export const Notification = ({msg}) => {
 Notification.propTypes = {
   msg: PropTypes.string.isRequired
 }
+export default Notification
